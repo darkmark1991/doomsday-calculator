@@ -62,8 +62,8 @@ const localization = {
         ge: 'დასკვნა'
     },
     yearDoomsdayTexts: {
-        en: ['The year doomsday for ', ' is ', ' days from century doomsday.', 'So it is: '],
-        ge: ['განკითხვის დღე ', ' წლისთვის არის ', ' დღით დაშორებული საუკუნის განკითხვის დღიდან', 'ანუ არის: ']
+        en: ['The year doomsday for', 'is', 'days from century doomsday.', 'So it is:'],
+        ge: ['განკითხვის დღე', 'წლისთვის არის', 'დღით დაშორებული საუკუნის განკითხვის დღიდან.', 'ანუ არის:']
     },
     closestDoomsdayText: {
         en: 'is closest to doomsday date',
@@ -71,7 +71,7 @@ const localization = {
     },
     dayOfTheWeekTexts: {
         en: ['So it is', 'days', 'nearest doomsday, which makes it a'],
-        ge: ['ანუ', 'დღით არის', 'უახლოესი განკითხვის დღიდან, ანუ არის']
+        ge: ['ე.ი', 'დღით არის', 'უახლოესი განკითხვის დღიდან, ანუ არის']
     },
 }
 // check for georgian language in navigator
@@ -252,8 +252,8 @@ const calcDoomsday = () => {
     ).show();
 
     $('#yearDoomsday').html(
-        `${localization.yearDoomsdayTexts[LANG][0]}${year}${localization.yearDoomsdayTexts[LANG][1]}${tmpD}${localization.yearDoomsdayTexts[LANG][2]}
-        ${localization.yearDoomsdayTexts[LANG][3]}<strong>${daysOfWeek[LANG][yearDoomsday]}</strong>`
+        `${localization.yearDoomsdayTexts[LANG][0]} ${year} ${localization.yearDoomsdayTexts[LANG][1]} ${tmpD} ${localization.yearDoomsdayTexts[LANG][2]}
+        ${localization.yearDoomsdayTexts[LANG][3]} <strong>${daysOfWeek[LANG][yearDoomsday]}</strong>`
     ).show();
 
     const isLeapYear = year % 4 == 0;
@@ -283,7 +283,7 @@ const randomDate = () => {
     const start = new Date(1600, 0, 1);
     const end = new Date(2199, 11, 31);
     let date = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
-    date = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+    date = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' : '') + (date.getMonth() + 1) + '-' + (date.getDate() < 10 ? '0' : '') + date.getDate();
     $('#date').val(date);
     calcDoomsday();
 }
