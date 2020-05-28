@@ -1,2 +1,2 @@
 # doomsday-calculator
-John Conway'd Doomsday Rule calculator
+John Conway's Doomsday Rule calculator
