@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/bootstrap.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="assets/style.css">
     <title id="pageTitle">Doomsday Rule</title>
@@ -261,22 +260,25 @@
                 </div>
             </div>
 
-            <div class="mt-3">
-                <p id="centuryDoomsday"></p>
-                <p id="yearNum"></p>
-                <p id="calculateYear"></p>
-                <p id="yearDoomsday"></p>
-                <p id="closestDoomsday"></p>
-                <p id="dayOfTheWeek"></p>
-                <p class="font-weight-bold" id="conclusion"></p>
-                <p class="font-weight-bold text-danger" id="error"></p>
+            <div id="result" class="mt-3 collapse card card-body">
+                <p id="centuryDoomsday" class="hide"></p>
+                <p id="yearNum" class="hide"></p>
+                <p id="calculateYear" class="hide"></p>
+                <p id="yearDoomsday" class="hide"></p>
+                <p id="closestDoomsday" class="hide"></p>
+                <p id="dayOfTheWeek" class="hide"></p>
+                <p class="font-weight-bold" id="conclusion" class="hide"></p>
+                <p class="font-weight-bold text-danger hide mb-0" id="error"></p>
             </div>
         </div>
     </main>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="assets/jquery-3.3.1.slim.min.js"><\/script>')</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script>if(typeof(Popper) === 'undefined') {document.write('<script src="assets/popper.min.js"><\/script>')}</script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script>if(!$.fn.modal){document.write('<script src="assets/bootstrap.min.js"><\/script>');}</script>
     <script src="assets/script.js"></script>
   </body>
 </html>
