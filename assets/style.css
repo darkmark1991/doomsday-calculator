@@ -4,3 +4,6 @@
 .hover-hand:hover {
     cursor: pointer;
 }
+.hide {
+    display: none;
+}

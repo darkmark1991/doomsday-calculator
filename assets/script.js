@@ -35,11 +35,11 @@ const localization = {
     },
     behind: {
         en: 'behind',
-        ge: 'უკანაა'
+        ge: 'უკან'
     },
     after: {
         en: 'after',
-        ge: 'წინაა'
+        ge: 'წინ'
     },
     isa: {
         en: 'is a',
@@ -81,9 +81,12 @@ const switchLang = (lang) => {
         $('.lang-ge').hide()
         $('.lang-en').show();
     }
-    $('#pageTitle').innerHTML = localization.pageTitle[LANG];
+    $('#pageTitle').html(localization.pageTitle[LANG]);
     $('#date').attr('placeholder', localization.datePlaceholder[LANG]);
     $('#date').attr('title', localization.dateTitle[LANG]);
+    if (!!$('#date').val()) {
+        calcDoomsday();
+    }
 }
 switchLang(LANG);
 const daysOfWeek = {
@@ -108,9 +111,9 @@ const calcClosestDoomsday = (month, day, isLeapYear) => {
     const daysInCurrentMonth = (month === 2) ? (28 + isLeapYear) : 31 - (month - 1) % 7 % 2;
 
     let doomsMonth =
-        monthDoomsdays[month] === day || (monthDoomsdays[month] + daysInCurrentMonth + monthDoomsdays[month+1]) / 2 < day ? month : month + 1;
+        month === 12 || monthDoomsdays[month] === day || (monthDoomsdays[month] + daysInCurrentMonth + monthDoomsdays[month+1]) / 2 < day ? month : (month + 1);
     
-    let doomsDay = monthDoomsdays[doomsMonth]
+    let doomsDay = monthDoomsdays[doomsMonth];
 
     // check if the doomsday of next month is closer
     if (doomsMonth > month) {
@@ -137,22 +140,23 @@ $('#date').keypress(function (e) {
 });
 
 const calcDoomsday = () => {
-    const date = document.getElementById('date').value;
+    const date = $('#date').val();
     // chack if Date.parse returned NaN
     if (Date.parse(date) !== Date.parse(date)) {
-        document.getElementById('error').innerHTML =
-            localization.inputError[LANG];
-        document.getElementById('centuryDoomsday').innerHTML = '';
-        document.getElementById('calculateYear').innerHTML = '';
-        document.getElementById('yearNum').innerHTML = '';
-        document.getElementById('yearDoomsday').innerHTML = '';
-        document.getElementById('closestDoomsday').innerHTML = '';
-        document.getElementById('dayOfTheWeek').innerHTML = '';
-        document.getElementById('conclusion').innerHTML = '';
+        $('#error').html(localization.inputError[LANG]).show();
+        $('#centuryDoomsday').html('').hide();
+        $('#calculateYear').html('').hide();
+        $('#yearNum').html('').hide();
+        $('#yearDoomsday').html('').hide();
+        $('#closestDoomsday').html('').hide();
+        $('#dayOfTheWeek').html('').hide();
+        $('#conclusion').html('').hide();
+        $('#result').collapse('show');
         return;
     } else {
-        document.getElementById('error').innerHTML = '';
+        $('#error').html('').hide();
     }
+
     let [year, month, day] = date.split('-');
     year = year * 1;
     month = month * 1;
@@ -161,11 +165,13 @@ const calcDoomsday = () => {
     const century = ~~(year / 100) + 1;
     const centuryDoomsday = anchorDoomsdays[century % 4];
 
-    document.getElementById('centuryDoomsday').innerHTML =
-        `1. ${localization.centuryDoomsdayTexts[LANG][0]}${century}${localization.centuryDoomsdayTexts[LANG][1]}<strong>${daysOfWeek[LANG][centuryDoomsday]}</strong>`;
+    $('#centuryDoomsday').html(
+        `1. ${localization.centuryDoomsdayTexts[LANG][0]}${century}${localization.centuryDoomsdayTexts[LANG][1]}<strong>${daysOfWeek[LANG][centuryDoomsday]}</strong>`
+    ).show();
 
-    document.getElementById('yearNum').innerHTML =
-        `2. ${localization.yearNumText[LANG]} Y = <strong>${yy}</strong>`;
+    $('#yearNum').html(
+        `2. ${localization.yearNumText[LANG]} Y = <strong>${yy}</strong>`
+    ).show();
 
     const tmpA = ~~(yy / 12);
     const tmpB = yy % 12;
@@ -173,31 +179,38 @@ const calcDoomsday = () => {
     const tmpD = (tmpA + tmpB + tmpC) % 7;
     const yearDoomsday = (centuryDoomsday + tmpD) % 7;
 
-    document.getElementById('calculateYear').innerHTML =
+    $('#calculateYear').html(
         `${yy} / 12 = ${tmpA} + ${tmpB} (A = ${tmpA}, B = ${tmpB})<br>
         ${tmpB} / 4 = ${tmpC} + ${localization.remainder[LANG]} (C = ${tmpC})<br>
-        D = (${tmpA} + ${tmpB} + ${tmpC}) ${localization.modulo[LANG]} 7 = ${tmpD} <br>`;
+        D = (${tmpA} + ${tmpB} + ${tmpC}) ${localization.modulo[LANG]} 7 = ${tmpD} <br>`
+    ).show();
 
-    document.getElementById('yearDoomsday').innerHTML =
+    $('#yearDoomsday').html(
         `${localization.yearDoomsdayTexts[LANG][0]}${year}${localization.yearDoomsdayTexts[LANG][1]}${tmpD}${localization.yearDoomsdayTexts[LANG][2]},
-        ${localization.yearDoomsdayTexts[LANG][3]}<strong>${daysOfWeek[LANG][yearDoomsday]}</strong>`;
+        ${localization.yearDoomsdayTexts[LANG][3]}<strong>${daysOfWeek[LANG][yearDoomsday]}</strong>`
+    ).show();
 
     const isLeapYear = year % 4 == 0;
 
     const closestDoomsday = calcClosestDoomsday(month, day, isLeapYear);
 
-    document.getElementById('closestDoomsday').innerHTML =
-        `3. ${day} ${months[LANG][month]} ${localization.closestDoomsdayText[LANG]} ${closestDoomsday.day}/${closestDoomsday.month}`;
+    $('#closestDoomsday').html(
+        `3. ${day} ${months[LANG][month]} ${localization.closestDoomsdayText[LANG]} ${closestDoomsday.day}/${closestDoomsday.month}`
+    ).show();
 
     const dayOfTheWeek = (yearDoomsday + closestDoomsday.step * closestDoomsday.direction + 7) % 7;
 
-    document.getElementById('dayOfTheWeek').innerHTML =
+    $('#dayOfTheWeek').html(
         `${localization.dayOfTheWeekTexts[LANG][0]} ${closestDoomsday.calculation} ${localization.dayOfTheWeekTexts[LANG][1]} `
-        + (closestDoomsday.direction ? localization.behind[LANG] : localization.after[LANG])
-        + ` ${localization.dayOfTheWeekTexts[LANG][2]} <strong>${daysOfWeek[LANG][dayOfTheWeek]}</strong>`;
+        + (closestDoomsday.direction === 1 ? localization.after[LANG] : localization.behind[LANG])
+        + ` ${localization.dayOfTheWeekTexts[LANG][2]} <strong>${daysOfWeek[LANG][dayOfTheWeek]}</strong>`
+    ).show();
 
-    document.getElementById('conclusion').innerHTML =
-        `${day} ${months[LANG][month]} ${year} ${localization.isa[LANG]} ${daysOfWeek[LANG][dayOfTheWeek]}`;
+    $('#conclusion').html(
+        `${day} ${months[LANG][month]} ${year} ${localization.isa[LANG]} ${daysOfWeek[LANG][dayOfTheWeek]}`
+    ).show();
+
+    $('#result').collapse('show');
 }
 
 const randomDate = () => {
