@@ -30,8 +30,8 @@ const localization = {
         ge: 'გთხოვთ შეიყვანოთ სწორი თარიღი: YYYY-MM-DD'
     },
     centuryDoomsdayTexts: {
-        en: ['The anchor doomsday for ', 'th century is '],
-        ge: ['მე-', ' საუკუნის ფუძე-დღე არის ']
+        en: ['The anchor doomsday for', 'century is'],
+        ge: ['', 'საუკუნის ფუძე-დღე არის']
     },
     yearNumText: {
         en: 'The last two digits of the year are ',
@@ -56,6 +56,10 @@ const localization = {
     isa: {
         en: 'is a',
         ge: 'არის'
+    },
+    conclusion: {
+        en: 'Conclusion',
+        ge: 'დასკვნა'
     },
     yearDoomsdayTexts: {
         en: ['The year doomsday for ', ' is ', ' days from century doomsday.', 'So it is: '],
@@ -146,6 +150,37 @@ const calcClosestDoomsday = (month, day, isLeapYear) => {
     return { month: doomsMonth, day: doomsDay, step: step, direction: direction, calculation: calculation };
 }
 
+const centuryText = (c) => {
+    let str = '';
+    if (LANG === 'ge') {
+        if (c < 4) {
+            str = c === 1 ? 'პირველი' : c === 2 ? 'მეორე' : 'მესამე';
+        } else if (c % 100 === 0 || c < 21) {
+            str = `მე-${c}`;
+        } else {
+            str = `${c}-ე`
+        }
+    } else {
+        str = `${c}<sup>${
+            ~~(c / 10) % 2 === 0 ? (c % 10 === 1 ? 'st' : c % 10 === 2 ? 'nd' : c % 10 === 2 ? 'rd' : 'th') : 'th'
+        }</sup>`;
+    }
+    return str;
+}
+
+const dateText = (y, m, d) => {
+    let str = '';
+    if (LANG === 'ge') {
+        str = `${y} წლის ${d === 1 ? 'პირველი' : d} ${months[LANG][m]}`;
+    } else {
+        str = `${months[LANG][m]} ${d}<sup>${
+            d > 3 && d < 21 ? 'th' : (d % 10 === 1 ? 'st' : d % 10 === 2 ? 'nd' : d % 10 === 3 ? 'rd' : 'th')
+        }</sup>,
+        ${y}`;
+    }
+    return str;
+}
+
 // trigger calcDoomsday on enter
 $('#date').keypress(function (e) {
     if (e.which == 13) {
@@ -155,10 +190,12 @@ $('#date').keypress(function (e) {
 });
 
 const calcDoomsday = () => {
-    const date = $('#date').val();
+    let dateStr = $('#date').val();
+    let date = Date.parse($('#date').val());
     // chack if Date.parse returned NaN
-    if (Date.parse(date) !== Date.parse(date)) {
+    if (date !== date) {
         $('#error').html(localization.inputError[LANG]).show();
+        $('#dateInConsideration').html('').hide();
         $('#centuryDoomsday').html('').hide();
         $('#calculateYear').html('').hide();
         $('#yearNum').html('').hide();
@@ -172,16 +209,30 @@ const calcDoomsday = () => {
         $('#error').html('').hide();
     }
 
-    let [year, month, day] = date.split('-');
-    year = year * 1;
-    month = month * 1;
-    day = day * 1;
+    date = new Date(date);
+
+    let year, month, day;
+    if (/[0-9]{1,4}-[0-9]{1,2}-[0-9]{1,2}/g.test(dateStr)) {
+        [year, month, day] = dateStr.split('-');
+        year *= 1;
+        month *= 1;
+        day *= 1;
+    } else {
+        year = date.getFullYear() * 1;
+        month = date.getMonth() * 1 + 1;
+        day = date.getDate() * 1;
+    }
+
+    $('#dateInConsideration').html(
+        `<strong>${dateText(year, month, day)}:</strong>`
+    ).show();
+
     const yy = year % 100;
     const century = ~~(year / 100) + 1;
     const centuryDoomsday = anchorDoomsdays[century % 4];
 
     $('#centuryDoomsday').html(
-        `1. ${localization.centuryDoomsdayTexts[LANG][0]}${century}${localization.centuryDoomsdayTexts[LANG][1]}<strong>${daysOfWeek[LANG][centuryDoomsday]}</strong>`
+        `1. ${localization.centuryDoomsdayTexts[LANG][0]} ${centuryText(century)} ${localization.centuryDoomsdayTexts[LANG][1]} <strong>${daysOfWeek[LANG][centuryDoomsday]}</strong>`
     ).show();
 
     $('#yearNum').html(
@@ -201,7 +252,7 @@ const calcDoomsday = () => {
     ).show();
 
     $('#yearDoomsday').html(
-        `${localization.yearDoomsdayTexts[LANG][0]}${year}${localization.yearDoomsdayTexts[LANG][1]}${tmpD}${localization.yearDoomsdayTexts[LANG][2]},
+        `${localization.yearDoomsdayTexts[LANG][0]}${year}${localization.yearDoomsdayTexts[LANG][1]}${tmpD}${localization.yearDoomsdayTexts[LANG][2]}
         ${localization.yearDoomsdayTexts[LANG][3]}<strong>${daysOfWeek[LANG][yearDoomsday]}</strong>`
     ).show();
 
@@ -222,7 +273,7 @@ const calcDoomsday = () => {
     ).show();
 
     $('#conclusion').html(
-        `${day} ${months[LANG][month]} ${year} ${localization.isa[LANG]} ${daysOfWeek[LANG][dayOfTheWeek]}`
+        `${localization.conclusion[LANG]}: ${dateText(year, month, day)} ${localization.isa[LANG]} ${daysOfWeek[LANG][dayOfTheWeek]}`
     ).show();
 
     $('#result').collapse('show');
