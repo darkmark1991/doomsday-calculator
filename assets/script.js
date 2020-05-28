@@ -283,7 +283,7 @@ const randomDate = () => {
     const start = new Date(1600, 0, 1);
     const end = new Date(2199, 11, 31);
     let date = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
-    date = date.getFullYear() + '-' + ((date.getMonth() + 1) / 10 < 0 ? '0' : '') + (date.getMonth() + 1) + '-' + (date.getDate() / 10 < 0 ? '0' : '') + date.getDate();
+    date = date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' : '') + (date.getMonth() + 1) + '-' + (date.getDate() < 10 ? '0' : '') + date.getDate();
     $('#date').val(date);
     calcDoomsday();
 }
