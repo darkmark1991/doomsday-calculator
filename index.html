@@ -23,33 +23,50 @@
                     <h2 class="lang-en" style="margin-top:-20px">
                         Doomsday Rule
                     </h2>
-                    <small id="enSwitch" onclick="switchLang('en')" class="text-muted">eng</small>
+                    <small id="enSwitch" onclick="switchLang('en')" class="hover-hand text-muted">eng</small>
                     <small class="text-muted">|</small>
-                    <small id="geSwitch" onclick="switchLang('ge')" class="text-muted">geo</small>
-                    <p>
-                        განკითხვის დღის წესი წარმოადგენს ალგორითმს რომლის გამოყენებით შეგვიძლია გამოვთვალოთ,
-                        თუ კვირის რა დღე იყო ნებისმიერი თარიღი. ალგორითმი მათემატიკოსმა ჯონ კონვეიმ (1937 - 2020) შეიმუშავა 1973 წელს.
-                        ის ეფუძვნება დაკვირვებას, რომლის მიხედვითაც ყოველ წელს არის კვირის ერთი დღე, 'განკითხვის დღე',
-                        რომელიც ადვიდად დასამახსოვრებელ თარიღებს ემთხვევა (თებერვლის ბოლო რიცხვი, 4/4, 6/6, 8/8, 10/10, 12/12 ა.შ)
-                    </p>
-                    <p>                    
-                        ალგორითმი რამდენიმე საფეხურისგან შედგება:
-                    </p>
-                    <ol>
-                        <li>საუკუნის ფუძე-დღის დადგენა</li>
-                        <li>წლის განკითხვის დღის გამოთვლა საუკუნის ფუძე-დღეზე დაყრდნობით</li>
-                        <li>განკითხვის ადვილად დასამახსოვრებელი დღეებიდან უახლოესის შერჩევა და სასურველ თარიღამდე გადათვლა</li>
-                    </ol>
+                    <small id="geSwitch" onclick="switchLang('ge')" class="hover-hand text-muted">geo</small>
+                    <div class="lang-ge">
+                        <p>
+                            განკითხვის დღის წესი წარმოადგენს ალგორითმს რომლის გამოყენებით შეგვიძლია გამოვთვალოთ,
+                            თუ კვირის რა დღე იყო ნებისმიერი თარიღი. ალგორითმი მათემატიკოსმა ჯონ კონვეიმ (1937 - 2020) შეიმუშავა 1973 წელს.
+                            ის ეფუძვნება დაკვირვებას, რომლის მიხედვითაც ყოველ წელს არის კვირის ერთი დღე, 'განკითხვის დღე',
+                            რომელიც ადვიდად დასამახსოვრებელ თარიღებს ემთხვევა (თებერვლის ბოლო რიცხვი, 4/4, 6/6, 8/8, 10/10, 12/12 ა.შ)
+                        </p>
+                        <p>                    
+                            ალგორითმი რამდენიმე საფეხურისგან შედგება:
+                        </p>
+                        <ol>
+                            <li>საუკუნის ფუძე-დღის დადგენა</li>
+                            <li>წლის განკითხვის დღის გამოთვლა საუკუნის ფუძე-დღეზე დაყრდნობით</li>
+                            <li>განკითხვის ადვილად დასამახსოვრებელი დღეებიდან უახლოესის შერჩევა და სასურველ თარიღამდე გადათვლა</li>
+                        </ol>
+                    </div>
+                    <div class="lang-en">
+                        <p>
+                            Doomsday rule is an algorithm for finding the day of the week for any given date developed by mathematician John Conway (1937 - 2020) in 1973.
+                            It takes advantage of  each year having a certain day of the week, called the doomsday, upon which certain easy-to-remember dates fall.
+                            For example, 4/4, 6/6, 8/8, 10/10, 12/12, and the last day of February all occur on the same day of the week in any year.
+                        </p>
+                        <p>                    
+                            The algorithm has three main steps:
+                        </p>
+                        <ol>
+                            <li>Determination of the anchor day for the century</li>
+                            <li>Calculation of the doomsday for the year from the anchor day</li>
+                            <li>Selection of the closest date out of those that always fall on the doomsday</li>
+                        </ol>
+                    </div>
                 </div>
                 <div class="col-3">
                     <img src="assets/conway-min.png" alt="" class="img-fluid pb-2" style="margin-top:-40px;">
                 </div>
             </div>
-            <div class="mt-2">                
+            <div class="lang-ge mt-2">                
                 <p>
                     1. საუკუნის ფუძის დასადგენად შეგვიძლია დავიმახსოვროთ
                     რომ გრეგორიანულ კალენდრის ციკლი ყოველ 4 საუკუნეში მეორდება.
-                    I საუკუნის ფუძე-დღეა სამშაბათი, II - კვირა, III პარასკევი, IV - ოთხშაბათი,
+                    I საუკუნის ფუძე-დღეა სამშაბათი, II - კვირა, III - პარასკევი, IV - ოთხშაბათი,
                     მეხუთე საუკუნიდან ციკლი ახლიდან იწყება.
                 </p>
                 <p>
@@ -63,7 +80,24 @@
                 </ul>
                 <small class="form-text text-muted">*მოსახერხებელია რომ საუკუნედ 00-დან 99-ს ჩათვლით წლები მივიჩნიოთ</small>
             </div>
-            <div class="mt-3">
+            <div class="lang-en mt-2">                
+                <p>
+                    1. To rememer the century anchor year we can take advantage of the fact that the Gregorian calendar cycles evey 400 years.
+                    Anchor year for I century is Tuesday, II - Sunday, III - Friday, IV - Wednesday,
+                    and the cycle repeats starting with V century.
+                </p>
+                <p>
+                    However, Conway provided us with easy-to-remember mnemonics for the most useful periods:
+                </p>
+                <ul>
+                    <li>1800-1899 - Friday </li>
+                    <li>1900-1999 - Wednesday - We-in-dis-day (most living people were born in that century)</li>
+                    <li>2000-2099 - Tuesday - Y-Tue-K or Twos-day (Y2K was at the head of this century)</li>
+                    <li>2100-2199 - Sunday - Twenty-one-day is Sunday (2100 is the start of the next century)</li>
+                </ul>
+                <small class="form-text text-muted">*For the purposes of the doomsday rule, a century starts with '00 and ends with '99</small>
+            </div>
+            <div class="lang-ge mt-3">
                 <p>
                     2. წლის განკითხვის დღის საპოვნელად შემდეგი გამოთვლები უნდა ჩავატაროთ:
                 </p>
@@ -88,13 +122,44 @@
                             <li>თუ T კენტია დავუმატოთ 11</li>
                             <li>T გავანახევროთ (T = T / 2)</li>
                             <li>თუ T კენტია დავუმატოთ 11</li>
-                            <li>7-ს გამოვაკლოთ T-ს 7-ზე გაყოფისას მიღებული ნაშთი T = 7 − (T mod 7).</li>
+                            <li>7-ს გამოვაკლოთ T-ს 7-ზე გაყოფისას მიღებული ნაშთი T = 7 − (T mod 7)</li>
                             <li>გადავთვალოთ T დღე საუკუნის ფუძე-დღიდან</li>
                         </ol>
                     </div>
                 </div>
             </div>
-            <div class="mt-3">
+            <div class="lang-en mt-3">
+                <p>
+                    2. To find the year's doomsday we need the following calculations:
+                </p>
+                <ol>
+                    <li>Take the last two digits of the year (Y)</li>
+                    <li>Divide Y by 12 and let the floor of the quotient be A and the remainder B</li>
+                    <li>Divide the remainder B by 4 and let C be the floor of the quotient</li>
+                    <li>Let D be the remainder of (A+B+C) divided by 7</li>
+                    <li>Count D days from century's anchor day to find the year's doomsday</li>
+                </ol>
+                <p>
+                    Note: In 2010 Chamberlain Fong and Michael K. Walters discovered a simpler method for finding the year's doomsday,
+                    called off + 11. If you want to find out more click 
+                    <a data-toggle="collapse" href="#odd11" role="button">
+                        here
+                    </a>
+                </p>
+                <div class="collapse" id="odd11">
+                    <div class="card card-body">
+                        <ol>
+                            <li>Take the last two digits of year (T)</li>
+                            <li>If T is odd add 11</li>
+                            <li>Let T = T / 2</li>
+                            <li>If T is odd add 11</li>
+                            <li>Now let T = 7 − (T mod 7)</li>
+                            <li>Count forward T days from the century's anchor day to get the year's doomsday</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="lang-ge mt-3">
                 3. მოგვიწევს შემდეგი დღეების დამახსოვრება, თანაც კონოვეის "9-5 at 7-11" მნემონიკის გარეშე,
                 რომელიც ქართული რეალობისთვის არაა რელევანტური.
                 <table class="table table-bordered text-center">
@@ -141,10 +206,58 @@
                 <small class="form-text text-muted">მაგ. 15 აპრილისთვის გამოვთვლით (15 - 4) / 7 = 2 + 1 და განკითხვის დღიდან მხოლოდ 1 დღის ათვლა მოგვიწევს</small>
                 <p class="mt-4">სავარჯიშოდ შეგიძლიათ ქვემოთ მოცემული კალკულატორი გამოიყენოთ.</p>
             </div>
+
+            <div class="lang-en mt-3">
+                3. We need to remember these dates. Conway used "9-to-5 at 7-11" mnemonic for 9/5, 5/9, 7/11 and 11/7.
+                Last day of February is always a Doomsday, and we use it for March as well (0/3).
+                <table class="table table-bordered text-center">
+                    <thead>
+                      <tr>
+                        <th>Jan</th>
+                        <th>Feb</th>
+                        <th>Mar</th>
+                        <th>Apr</th>
+                        <th>May</th>
+                        <th>Jun</th>
+                        <th>Jul</th>
+                        <th>Aug</th>
+                        <th>Sep</th>
+                        <th>Oct</th>
+                        <th>Nov</th>
+                        <th>Dec</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>3/1 or 4/1</td>
+                        <td>28/2 or 29/2</td>
+                        <td>0/3</td>
+                        <td>4/4</td>
+                        <td>9/5</td>
+                        <td>6/6</td>
+                        <td>11/7</td>
+                        <td>8/8</td>
+                        <td>5/9</td>
+                        <td>10/10</td>
+                        <td>7/11</td>
+                        <td>12/12</td>
+                      </tr>
+                    </tbody>
+                </table>
+                <small class="form-text text-muted">*For January and February it's 3 and 28 in a normal year, and 4 and 29 in Leap year</small>
+                <p class="mt-2">
+                    Then we just count from the nearest doomsday and find out what day it was.
+                    To simplify this we can take modulo of 7 of the distance and count by that amount.
+                </p>
+                <p class="mt-4">You can use this calculator to hone your skills :))</p>
+            </div>
             <div class="input-group my-3">
-                <input type="text" class="form-control" id="date" placeholder="Enter date (Ex.: 1991-04-23)" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" title="Date format: YYYY-MM-DD">
+                <input type="text" class="form-control" id="date" onenter="calcDoomsday()" placeholder="Enter date (Ex.: 1991-04-23)" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" title="Date format: YYYY-MM-DD">
                 <div class="input-group-append">
-                    <button class="btn btn-primary" onclick="calcDoomsday()">Submit</button>
+                    <button class="btn btn-primary" onclick="calcDoomsday()">Calculate</button>
+                </div>
+                <div class="input-group-append">
+                    <button class="btn btn-warning" onclick="randomDate()">Random</button>
                 </div>
             </div>
 
