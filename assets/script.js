@@ -13,6 +13,18 @@ const localization = {
         en: 'Date format: YYYY-MM-DD',
         ge: 'თარიღის ფორმატი: YYYY-MM-DD'
     },
+    btnCalculate: {
+        en: 'Calculate',
+        ge: 'გამოთვლა'
+    },
+    btnRandom: {
+        en: 'Random',
+        ge: 'შემთხვევითი თარიღი'
+    },
+    btnRandomTitle: {
+        en: 'Random date between 1600 and 2199',
+        ge: 'შემთხვევითი თარიღი 1600-სა და 2199-ს შორის'
+    },
     inputError: {
         en: 'Please enter a valid date: YYYY-MM-DD',
         ge: 'გთხოვთ შეიყვანოთ სწორი თარიღი: YYYY-MM-DD'
@@ -81,6 +93,9 @@ const switchLang = (lang) => {
         $('.lang-ge').hide()
         $('.lang-en').show();
     }
+    $('#btnCalculate').html(localization.btnCalculate[LANG]);
+    $('#btnRandom').html(localization.btnRandom[LANG]);
+    $('#btnRandom').attr('title', localization.btnRandomTitle[LANG]);
     $('#pageTitle').html(localization.pageTitle[LANG]);
     $('#date').attr('placeholder', localization.datePlaceholder[LANG]);
     $('#date').attr('title', localization.dateTitle[LANG]);
