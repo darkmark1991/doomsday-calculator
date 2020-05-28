@@ -46,7 +46,7 @@ const localization = {
         ge: 'არის'
     },
     yearDoomsdayTexts: {
-        en: ['The year doomsday for ', ' is ', ' days from century doomsday (', ').<br>So it is: '],
+        en: ['The year doomsday for ', ' is ', ' days from century doomsday.', 'So it is: '],
         ge: ['განკითხვის დღე ', ' წლისთვის არის ', ' დღით დაშორებული საუკუნის განკითხვის დღიდან', 'ანუ არის: ']
     },
     closestDoomsdayText: {
