@@ -41,9 +41,9 @@ const localization = {
         en: 'after',
         ge: 'წინაა'
     },
-    wasa: {
-        en: 'was a',
-        ge: 'იყო'
+    isa: {
+        en: 'is a',
+        ge: 'არის'
     },
     yearDoomsdayTexts: {
         en: ['The year doomsday for ', ' is ', ' days from century doomsday (', ').<br>So it is: '],
@@ -197,7 +197,7 @@ const calcDoomsday = () => {
         + ` ${localization.dayOfTheWeekTexts[LANG][2]} <strong>${daysOfWeek[LANG][dayOfTheWeek]}</strong>`;
 
     document.getElementById('conclusion').innerHTML =
-        `${day} ${months[LANG][month]} ${year} ${localization.wasa[LANG]} ${daysOfWeek[LANG][dayOfTheWeek]}`;
+        `${day} ${months[LANG][month]} ${year} ${localization.isa[LANG]} ${daysOfWeek[LANG][dayOfTheWeek]}`;
 }
 
 const randomDate = () => {
