@@ -246,8 +246,8 @@ const calcDoomsday = () => {
     const yearDoomsday = (centuryDoomsday + tmpD) % 7;
 
     $('#calculateYear').html(
-        `${yy} / 12 = ${tmpA} + ${tmpB} (A = ${tmpA}, B = ${tmpB})<br>
-        ${tmpB} / 4 = ${tmpC} + ${localization.remainder[LANG]} (C = ${tmpC})<br>
+        `${yy} / 12 = ${tmpA} + ${localization.remainder[LANG]} ${tmpB} (A = ${tmpA}, B = ${tmpB})<br>
+        ${tmpB} / 4 = ${tmpC} + ${localization.remainder[LANG]} X (C = ${tmpC})<br>
         D = (${tmpA} + ${tmpB} + ${tmpC}) ${localization.modulo[LANG]} 7 = ${tmpD} <br>`
     ).show();
 
