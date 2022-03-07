@@ -279,14 +279,19 @@
             </div>
 
             <div id="result" class="mt-3 collapse card card-body">
-                <p id="dateInConsideration" class="hide"></p>
-                <p id="centuryDoomsday" class="hide"></p>
-                <p id="yearNum" class="hide"></p>
-                <p id="calculateYear" class="ml-3 hide"></p>
-                <p id="yearDoomsday" class="ml-3 hide"></p>
-                <p id="closestDoomsday" class="hide"></p>
-                <p id="dayOfTheWeek" class="ml-3 hide"></p>
-                <p class="font-weight-bold" id="conclusion" class="hide"></p>
+                <p>
+			<span id="dateInConsideration" class="hide"></span>
+			<a href="#details" data-toggle="collapse"><span class="lang-en">Details</span><span class="lang-ge">დეტალები</span></a>
+		</p>
+		<section id="details" class="collapse">
+                	<p id="centuryDoomsday" class="hide"></p>
+                	<p id="yearNum" class="hide"></p>
+                	<p id="calculateYear" class="ml-3 hide"></p>
+                	<p id="yearDoomsday" class="ml-3 hide"></p>
+                	<p id="closestDoomsday" class="hide"></p>
+                	<p id="dayOfTheWeek" class="ml-3 hide"></p>
+                	<p class="font-weight-bold" id="conclusion" class="hide"></p>
+		</section>
                 <p class="font-weight-bold text-danger hide mb-0" id="error"></p>
             </div>
         </div>
